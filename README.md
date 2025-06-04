@@ -53,9 +53,7 @@ secure-scan-ai/
 **Cathrine Meyers**  
 Aspiring AWS AI Engineer | Background in Sports Broadcasting | Focused on AI-driven digital safety tools  
 📍 South Africa  
-🔗 [LinkedIn](https://www.linkedin.com/in/YOUR-USERNAME) • [GitHub](https://github.com/YOUR-GITHUB)
+🔗 [LinkedIn](https://www.linkedin.com/in/cathrine-meyers-41483ba0) • [GitHub](https://github.com/Kate-90-maker)
 
 ---
 
-## 📄 License
-MIT — feel free to use with credit.
