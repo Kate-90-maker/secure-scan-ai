@@ -4,11 +4,6 @@
 
 ---
 
-## 🌐 Live Demo
-🚧 Coming soon via GitHub Pages or Netlify
-
----
-
 ## 💡 Key Features
 - 🧠 AI-Powered Identity Verification (coming soon)
 - 🧍‍♂️ Facial Recognition & Biometrics
