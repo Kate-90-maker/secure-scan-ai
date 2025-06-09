@@ -1,1 +1,1691 @@
-<!-- Paste your HTML content here -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureScan AI - Advanced Credential Verification</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#2563eb", secondary: "#1a237e" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+      }
+      .glassmorphic {
+        background: rgba(248, 250, 252, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(8px);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #2563eb, #1a237e);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 35, 126, 0.8),
+          rgba(0, 255, 157, 0.4)
+        );
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      .glow-effect {
+        box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+      }
+      .glow-effect:hover {
+        box-shadow: 0 0 25px rgba(37, 99, 235, 0.8);
+      }
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+        }
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 5px;
+        outline: none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        background: #00ff9d;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: #00ff9d;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+      .custom-checkbox {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border: 2px solid #e5e7eb;
+        border-radius: 4px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      input[type="checkbox"]:checked + .custom-checkbox {
+        background: #00ff9d;
+        border-color: #00ff9d;
+      }
+      input[type="checkbox"]:checked + .custom-checkbox::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e5e7eb;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: #00ff9d;
+      }
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background: linear-gradient(90deg, #00ff9d, #1a237e);
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header class="glassmorphic fixed w-full z-50">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center">
+            <div class="flex items-center mr-8">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 flex items-center justify-center bg-primary rounded-lg mr-2"
+                >
+                  <i class="ri-shield-keyhole-fill text-secondary ri-lg"></i>
+                </div>
+                <h1 class="font-['Pacifico'] text-2xl text-gray-800">
+                  SecureScan
+                </h1>
+              </div>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+              <a
+                href="#"
+                class="nav-link text-gray-600 hover:text-primary transition-colors"
+                >Home</a
+              >
+              <a
+                href="#features"
+                class="nav-link text-gray-600 hover:text-primary transition-colors"
+                >Features</a
+              >
+              <a
+                href="#technology"
+                class="nav-link text-gray-600 hover:text-primary transition-colors"
+                >Technology</a
+              >
+              <a
+                href="#pricing"
+                class="nav-link text-gray-600 hover:text-primary transition-colors"
+                >Pricing</a
+              >
+              <a
+                href="#about"
+                class="nav-link text-gray-600 hover:text-primary transition-colors"
+                >About Us</a
+              >
+            </nav>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 pulse"
+            >
+              <i class="ri-robot-line text-primary ri-lg"></i>
+            </div>
+            <a
+              href="#"
+              class="hidden md:block px-6 py-2 bg-white/10 border border-white/20 text-white rounded-button hover:bg-white/20 transition-all whitespace-nowrap"
+              >Sign In</a
+            >
+            <a
+              href="#"
+              class="px-6 py-2 bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all glow-effect whitespace-nowrap"
+              >Get Started</a
+            >
+            <button
+              class="md:hidden w-10 h-10 flex items-center justify-center"
+            >
+              <i class="ri-menu-line text-white ri-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center bg-gray-50">
+      <div class="container mx-auto px-4 py-20 relative z-10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1
+              class="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+            >
+              The Future of
+              <span class="gradient-text">Security Verification</span>
+            </h1>
+            <p class="text-lg text-gray-700 mb-8">
+              Protect your community with advanced AI-powered credential
+              verification. Instantly scan and verify identities to ensure
+              safety and prevent fraud in an increasingly uncertain world.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+              <a
+                href="#"
+                class="px-8 py-3 bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all glow-effect text-center whitespace-nowrap"
+                >Start Scanning Now</a
+              >
+              <a
+                href="#"
+                class="px-8 py-3 bg-gray-100 text-gray-800 rounded-button hover:bg-gray-200 transition-all text-center whitespace-nowrap"
+                >Learn More</a
+              >
+            </div>
+            <div class="flex items-center space-x-4 text-gray-700">
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-shield-check-line ri-lg"></i>
+                </div>
+                <span class="text-gray-700">POPI Act Compliant</span>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-8 h-8 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-lock-line ri-lg"></i>
+                </div>
+                <span class="text-gray-700">End-to-End Encryption</span>
+              </div>
+            </div>
+          </div>
+          <div class="floating">
+            <div
+              class="bg-white/95 rounded-lg border border-gray-200 shadow-lg h-[600px] flex flex-col"
+            >
+              <div class="p-4 border-b border-gray-200">
+                <h3 class="font-orbitron text-xl text-gray-900">
+                  AI Security Assistant
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Ask me anything about security verification
+                </p>
+              </div>
+              <div
+                id="chat-messages"
+                class="flex-1 overflow-y-auto p-4 space-y-4"
+              >
+                <div class="flex items-start mb-4">
+                  <div
+                    class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3"
+                  >
+                    <i class="ri-robot-line text-primary"></i>
+                  </div>
+                  <div class="flex-1">
+                    <p class="bg-gray-100 rounded-lg p-3 text-gray-700">
+                      Hello! I'm your AI security verification assistant. How
+                      can I help you today?
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 border-t border-gray-200">
+                <div class="flex gap-2">
+                  <input
+                    type="text"
+                    id="chat-input"
+                    placeholder="Type your message..."
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary"
+                  />
+                  <button
+                    id="send-message"
+                    class="px-6 py-2 bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all whitespace-nowrap"
+                  >
+                    Send
+                  </button>
+                </div>
+                <div class="flex items-center justify-between mt-2 px-1">
+                  <div class="flex items-center gap-4 text-sm text-gray-500">
+                    <button class="flex items-center gap-1 hover:text-primary">
+                      <i class="ri-image-line"></i>
+                      <span>Image</span>
+                    </button>
+                    <button class="flex items-center gap-1 hover:text-primary">
+                      <i class="ri-attachment-2"></i>
+                      <span>File</span>
+                    </button>
+                  </div>
+                  <div class="text-sm text-gray-500">
+                    <span id="char-count">0</span>/500
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div
+            class="card-hover p-6 rounded-lg bg-white shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-user-search-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-2">5.2M+</h3>
+            <p class="text-gray-600">Verifications Completed</p>
+          </div>
+          <div
+            class="card-hover p-6 rounded-lg bg-white shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-shield-star-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-2">99.8%</h3>
+            <p class="text-gray-600">Accuracy Rate</p>
+          </div>
+          <div
+            class="card-hover p-6 rounded-lg bg-white shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-building-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-2">350+</h3>
+            <p class="text-gray-600">Partner Organizations</p>
+          </div>
+          <div
+            class="card-hover p-6 rounded-lg bg-white shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-database-2-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-2">42M+</h3>
+            <p class="text-gray-600">Records in Database</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="font-orbitron text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+          >
+            Advanced Security Features
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Our cutting-edge technology provides comprehensive protection for
+            communities and organizations with multiple verification methods.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div
+              class="w-14 h-14 mb-6 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-face-recognition-line text-primary ri-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Facial Recognition
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Advanced AI-powered facial recognition that can identify
+              individuals with 99.8% accuracy from various angles and lighting
+              conditions.
+            </p>
+            <a href="#" class="text-primary font-medium flex items-center">
+              Learn more
+              <div class="w-6 h-6 ml-2 flex items-center justify-center">
+                <i class="ri-arrow-right-line"></i>
+              </div>
+            </a>
+          </div>
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div
+              class="w-14 h-14 mb-6 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-fingerprint-line text-primary ri-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Biometric Verification
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Multi-factor biometric authentication including fingerprint, voice
+              pattern, and retinal scanning for maximum security.
+            </p>
+            <a href="#" class="text-primary font-medium flex items-center">
+              Learn more
+              <div class="w-6 h-6 ml-2 flex items-center justify-center">
+                <i class="ri-arrow-right-line"></i>
+              </div>
+            </a>
+          </div>
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div
+              class="w-14 h-14 mb-6 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-database-2-line text-primary ri-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Criminal Database
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Access to comprehensive South African criminal records and
+              international databases with real-time updates.
+            </p>
+            <a href="#" class="text-primary font-medium flex items-center">
+              Learn more
+              <div class="w-6 h-6 ml-2 flex items-center justify-center">
+                <i class="ri-arrow-right-line"></i>
+              </div>
+            </a>
+          </div>
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div
+              class="w-14 h-14 mb-6 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-shield-keyhole-line text-primary ri-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Privacy Protection
+            </h3>
+            <p class="text-gray-600 mb-4">
+              POPI Act compliant data handling with end-to-end encryption and
+              strict access controls to protect sensitive information.
+            </p>
+            <a href="#" class="text-primary font-medium flex items-center">
+              Learn more
+              <div class="w-6 h-6 ml-2 flex items-center justify-center">
+                <i class="ri-arrow-right-line"></i>
+              </div>
+            </a>
+          </div>
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div
+              class="w-14 h-14 mb-6 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-radar-line text-primary ri-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Real-time Alerts
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Instant notifications and alerts when potential threats are
+              identified, allowing for immediate action.
+            </p>
+            <a href="#" class="text-primary font-medium flex items-center">
+              Learn more
+              <div class="w-6 h-6 ml-2 flex items-center justify-center">
+                <i class="ri-arrow-right-line"></i>
+              </div>
+            </a>
+          </div>
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div
+              class="w-14 h-14 mb-6 flex items-center justify-center bg-primary/10 rounded-full"
+            >
+              <i class="ri-file-history-line text-primary ri-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Verification History
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Comprehensive audit trails and verification history for legal
+              compliance and future reference.
+            </p>
+            <a href="#" class="text-primary font-medium flex items-center">
+              Learn more
+              <div class="w-6 h-6 ml-2 flex items-center justify-center">
+                <i class="ri-arrow-right-line"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- How It Works Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="font-orbitron text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+          >
+            How It Works
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Our advanced AI-powered verification process is simple, fast, and
+            highly accurate.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-primary/10 rounded-full relative"
+            >
+              <i class="ri-upload-cloud-line text-primary ri-2x"></i>
+              <div
+                class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full font-bold"
+              >
+                1
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Upload Information
+            </h3>
+            <p class="text-gray-600">
+              Upload an image or enter ID information of the person you want to
+              verify.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-primary/10 rounded-full relative"
+            >
+              <i class="ri-scan-line text-primary ri-2x"></i>
+              <div
+                class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full font-bold"
+              >
+                2
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">AI Processing</h3>
+            <p class="text-gray-600">
+              Our advanced AI algorithms process and analyze the information in
+              seconds.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-primary/10 rounded-full relative"
+            >
+              <i class="ri-database-2-line text-primary ri-2x"></i>
+              <div
+                class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full font-bold"
+              >
+                3
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Database Check</h3>
+            <p class="text-gray-600">
+              The system cross-references with multiple criminal and security
+              databases.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-primary/10 rounded-full relative"
+            >
+              <i class="ri-file-list-3-line text-primary ri-2x"></i>
+              <div
+                class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full font-bold"
+              >
+                4
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Results & Report
+            </h3>
+            <p class="text-gray-600">
+              Receive detailed verification results with actionable insights and
+              recommendations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Technology Section -->
+    <section id="technology" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2
+              class="font-orbitron text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+            >
+              Powered by Advanced AI Technology
+            </h2>
+            <p class="text-gray-600 mb-6">
+              Our platform leverages cutting-edge artificial intelligence and
+              machine learning algorithms to provide the most accurate and
+              reliable verification results.
+            </p>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <div
+                  class="w-10 h-10 mt-1 flex items-center justify-center bg-primary/10 rounded-full shrink-0"
+                >
+                  <i class="ri-brain-line text-primary"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">
+                    Neural Network Processing
+                  </h3>
+                  <p class="text-gray-600">
+                    Deep learning neural networks analyze facial features and
+                    biometric data with exceptional accuracy.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-10 h-10 mt-1 flex items-center justify-center bg-primary/10 rounded-full shrink-0"
+                >
+                  <i class="ri-database-2-line text-primary"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">
+                    Comprehensive Database
+                  </h3>
+                  <p class="text-gray-600">
+                    Access to South African government records and international
+                    criminal databases with real-time updates.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-10 h-10 mt-1 flex items-center justify-center bg-primary/10 rounded-full shrink-0"
+                >
+                  <i class="ri-lock-line text-primary"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">
+                    Blockchain Security
+                  </h3>
+                  <p class="text-gray-600">
+                    Immutable blockchain technology ensures data integrity and
+                    prevents tampering of verification results.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="px-8 py-3 bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all inline-block whitespace-nowrap"
+              >Explore Our Technology</a
+            >
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-xl">
+            <img
+              src="https://readdy.ai/api/search-image?query=futuristic%20AI%20technology%20visualization%20with%20neural%20networks%2C%20digital%20brain%20patterns%2C%20and%20data%20processing%20nodes.%20Clean%2C%20professional%20design%20with%20blue%20and%20green%20color%20scheme.%20High-tech%20interface%20showing%20machine%20learning%20algorithms%20and%20pattern%20recognition.%20Cybersecurity%20elements%20and%20digital%20identity%20verification%20concept&width=600&height=500&seq=2&orientation=landscape"
+              alt="AI Technology"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="font-orbitron text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+          >
+            Flexible Pricing Plans
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Choose the perfect plan for your security needs, from individual
+            users to large organizations.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="card-hover rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-white"
+          >
+            <div class="p-6 border-b border-gray-100">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Free</h3>
+              <p class="text-gray-600 mb-4">
+                Perfect for trying out our platform
+              </p>
+              <div class="flex items-baseline">
+                <span class="text-4xl font-bold text-gray-900">Free</span>
+                <span class="text-gray-600 ml-2">forever</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >25 free credits monthly</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Basic identity verification</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700">Standard response time</span>
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >3-day verification history</span
+                  >
+                </li>
+                <li class="flex items-center text-gray-400">
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-close-line"></i>
+                  </div>
+                  <span class="ml-3">Advanced security checks</span>
+                </li>
+                <li class="flex items-center text-gray-400">
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-close-line"></i>
+                  </div>
+                  <span class="ml-3">API access</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="block w-full py-3 text-center bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all whitespace-nowrap"
+                >Start Free</a
+              >
+            </div>
+          </div>
+          <div
+            class="card-hover rounded-xl overflow-hidden shadow-xl border-2 border-primary bg-white relative transform scale-105 z-10"
+          >
+            <div
+              class="absolute top-0 right-0 bg-primary text-secondary px-4 py-1 text-sm font-medium"
+            >
+              Most Popular
+            </div>
+            <div class="p-6 border-b border-gray-100">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Professional</h3>
+              <p class="text-gray-600 mb-4">For professional use</p>
+              <div class="flex items-baseline">
+                <span class="text-4xl font-bold text-gray-900">R299</span>
+                <span class="text-gray-600 ml-2">/month</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >250 verifications per month</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Advanced criminal record checks</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Real-time SMS & email alerts</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >30-day verification history</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Basic biometric verification</span
+                  >
+                </li>
+                <li class="flex items-center text-gray-400">
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-close-line"></i>
+                  </div>
+                  <span class="ml-3">API access</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="block w-full py-3 text-center bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all glow-effect whitespace-nowrap"
+                >Get Started</a
+              >
+            </div>
+          </div>
+          <div
+            class="card-hover rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-white"
+          >
+            <div class="p-6 border-b border-gray-100">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Business</h3>
+              <p class="text-gray-600 mb-4">For organizations & teams</p>
+              <div class="flex items-baseline">
+                <span class="text-4xl font-bold text-gray-900">R899</span>
+                <span class="text-gray-600 ml-2">/month</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Unlimited verifications</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Comprehensive background checks</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700">24/7 priority alerts</span>
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Unlimited verification history</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700"
+                    >Advanced biometric verification</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-6 h-6 flex items-center justify-center text-primary"
+                  >
+                    <i class="ri-check-line"></i>
+                  </div>
+                  <span class="ml-3 text-gray-700">Full API access</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="block w-full py-3 text-center bg-gray-100 text-gray-800 font-medium rounded-button hover:bg-gray-200 transition-all whitespace-nowrap"
+                >Contact Sales</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white/80">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="font-orbitron text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+          >
+            Trusted by Organizations Across South Africa
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            See what our clients have to say about our verification platform.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div class="flex items-center mb-4">
+              <div class="text-primary">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6">
+              "This platform has revolutionized our hiring process. We can now
+              quickly verify candidates' backgrounds and ensure we're bringing
+              safe individuals into our organization. The accuracy is
+              impressive."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center"
+              >
+                <i class="ri-user-line text-gray-500"></i>
+              </div>
+              <div class="ml-4">
+                <h4 class="font-bold text-gray-800">Thabo Molefi</h4>
+                <p class="text-gray-600 text-sm">
+                  HR Director, Johannesburg Hospital
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div class="flex items-center mb-4">
+              <div class="text-primary">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6">
+              "As a community safety organization, we needed a reliable way to
+              verify individuals at our events. This platform provides instant
+              results and has helped us prevent several potential incidents."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center"
+              >
+                <i class="ri-user-line text-gray-500"></i>
+              </div>
+              <div class="ml-4">
+                <h4 class="font-bold text-gray-800">Nomvula Khumalo</h4>
+                <p class="text-gray-600 text-sm">
+                  Director, Cape Town Community Safety
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card-hover p-6 rounded-xl bg-white/90 shadow-lg border border-gray-200"
+          >
+            <div class="flex items-center mb-4">
+              <div class="text-primary">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6">
+              "The API integration with our school management system has been
+              seamless. We now verify all visitors before they enter our
+              premises, providing peace of mind for parents and staff alike."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center"
+              >
+                <i class="ri-user-line text-gray-500"></i>
+              </div>
+              <div class="ml-4">
+                <h4 class="font-bold text-gray-800">Michael van der Merwe</h4>
+                <p class="text-gray-600 text-sm">Principal, Durban Academy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16 text-center">
+          <h3 class="text-xl font-bold text-gray-800 mb-8">
+            Trusted by leading organizations
+          </h3>
+          <div
+            class="flex flex-wrap justify-center items-center gap-8 md:gap-16"
+          >
+            <div class="flex items-center text-gray-500">
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-building-4-line ri-xl"></i>
+              </div>
+              <span class="ml-2 font-medium">SA Police Service</span>
+            </div>
+            <div class="flex items-center text-gray-500">
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-government-line ri-xl"></i>
+              </div>
+              <span class="ml-2 font-medium">Department of Justice</span>
+            </div>
+            <div class="flex items-center text-gray-500">
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-hospital-line ri-xl"></i>
+              </div>
+              <span class="ml-2 font-medium">National Health Services</span>
+            </div>
+            <div class="flex items-center text-gray-500">
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-bank-line ri-xl"></i>
+              </div>
+              <span class="ml-2 font-medium">Standard Bank</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section -->
+    <section class="py-20 bg-secondary text-white">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-6">
+              Ready to Protect Your Community?
+            </h2>
+            <p class="text-white/80 mb-8">
+              Join thousands of organizations across South Africa who are using
+              our platform to create safer environments for everyone.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#"
+                class="px-8 py-3 bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all glow-effect text-center whitespace-nowrap"
+                >Get Started Today</a
+              >
+              <a
+                href="#"
+                class="px-8 py-3 bg-white/10 border border-white/20 text-white rounded-button hover:bg-white/20 transition-all text-center whitespace-nowrap"
+                >Schedule a Demo</a
+              >
+            </div>
+          </div>
+          <div class="rounded-xl overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=diverse%20South%20African%20community%20members%20using%20mobile%20devices%20for%20security%20verification%2C%20professional%20setting%20with%20modern%20technology.%20People%20from%20different%20backgrounds%20collaborating%20on%20safety%20initiatives.%20Clean%2C%20bright%20image%20showing%20positive%20community%20engagement%20with%20security%20technology&width=600&height=400&seq=3&orientation=landscape"
+              alt="Community Protection"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="font-orbitron text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+          >
+            Frequently Asked Questions
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Find answers to common questions about our verification platform.
+          </p>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <div class="space-y-6">
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                class="faq-toggle w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-colors"
+                data-target="faq1"
+              >
+                <span class="font-medium text-gray-800 text-left"
+                  >Is this platform POPI Act compliant?</span
+                >
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-500"
+                >
+                  <i class="ri-arrow-down-s-line faq-icon"></i>
+                </div>
+              </button>
+              <div id="faq1" class="faq-content hidden p-4 pt-0 bg-white">
+                <p class="text-gray-600">
+                  Yes, our platform is fully compliant with the Protection of
+                  Personal Information Act (POPI Act). We implement strict data
+                  protection measures, including end-to-end encryption, secure
+                  data storage, and limited access controls. All verifications
+                  are conducted with proper legal basis and we only collect and
+                  process information that is necessary for the verification
+                  process.
+                </p>
+              </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                class="faq-toggle w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-colors"
+                data-target="faq2"
+              >
+                <span class="font-medium text-gray-800 text-left"
+                  >How accurate is the verification process?</span
+                >
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-500"
+                >
+                  <i class="ri-arrow-down-s-line faq-icon"></i>
+                </div>
+              </button>
+              <div id="faq2" class="faq-content hidden p-4 pt-0 bg-white">
+                <p class="text-gray-600">
+                  Our verification process has a 99.8% accuracy rate. We use
+                  advanced AI algorithms and machine learning models that are
+                  continuously trained and improved. Our system cross-references
+                  multiple databases and uses various verification methods to
+                  ensure the highest level of accuracy. In the rare case of a
+                  false positive or negative, we have a rapid appeal process to
+                  correct any errors.
+                </p>
+              </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                class="faq-toggle w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-colors"
+                data-target="faq3"
+              >
+                <span class="font-medium text-gray-800 text-left"
+                  >Which databases do you check against?</span
+                >
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-500"
+                >
+                  <i class="ri-arrow-down-s-line faq-icon"></i>
+                </div>
+              </button>
+              <div id="faq3" class="faq-content hidden p-4 pt-0 bg-white">
+                <p class="text-gray-600">
+                  We check against multiple official databases including the
+                  South African Police Service criminal records, Department of
+                  Justice sex offender registry, and other relevant government
+                  databases. We also have partnerships with international law
+                  enforcement agencies for cross-border verification. All
+                  database access is legally authorized and compliant with
+                  relevant regulations.
+                </p>
+              </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                class="faq-toggle w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-colors"
+                data-target="faq4"
+              >
+                <span class="font-medium text-gray-800 text-left"
+                  >How long does a verification take?</span
+                >
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-500"
+                >
+                  <i class="ri-arrow-down-s-line faq-icon"></i>
+                </div>
+              </button>
+              <div id="faq4" class="faq-content hidden p-4 pt-0 bg-white">
+                <p class="text-gray-600">
+                  Basic verifications are completed in seconds, typically under
+                  10 seconds. More comprehensive background checks may take 1-2
+                  minutes. For the most thorough enterprise-level verifications
+                  that include international database checks, the process may
+                  take up to 5 minutes. All results are delivered in real-time
+                  through our platform, with immediate notifications.
+                </p>
+              </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                class="faq-toggle w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-colors"
+                data-target="faq5"
+              >
+                <span class="font-medium text-gray-800 text-left"
+                  >Can I integrate this with my existing systems?</span
+                >
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-500"
+                >
+                  <i class="ri-arrow-down-s-line faq-icon"></i>
+                </div>
+              </button>
+              <div id="faq5" class="faq-content hidden p-4 pt-0 bg-white">
+                <p class="text-gray-600">
+                  Yes, we offer comprehensive API access for Professional and
+                  Enterprise plans. Our API allows for seamless integration with
+                  your existing HR systems, security platforms, or custom
+                  applications. We provide detailed documentation, SDKs for
+                  popular programming languages, and dedicated technical support
+                  to assist with integration. Custom integration solutions are
+                  also available for specific requirements.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="max-w-xl mx-auto text-center">
+          <h2
+            class="font-orbitron text-2xl md:text-3xl font-bold text-gray-900 mb-4"
+          >
+            Stay Updated on Security Innovations
+          </h2>
+          <p class="text-gray-600 mb-8">
+            Subscribe to our newsletter for the latest security updates, feature
+            releases, and industry insights.
+          </p>
+          <form class="flex flex-col sm:flex-row gap-4">
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              class="flex-grow px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary"
+            />
+            <button
+              type="submit"
+              class="px-6 py-3 bg-primary text-secondary font-medium rounded-button hover:opacity-90 transition-all whitespace-nowrap"
+            >
+              Subscribe
+            </button>
+          </form>
+          <p class="text-gray-500 text-sm mt-4">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <div class="flex items-center mb-4">
+              <div
+                class="w-8 h-8 flex items-center justify-center bg-primary rounded-lg mr-2"
+              >
+                <i class="ri-shield-keyhole-fill text-secondary ri-lg"></i>
+              </div>
+              <h1 class="font-['Pacifico'] text-2xl text-white">SecureScan</h1>
+            </div>
+            <p class="text-gray-400 mb-6">
+              Protecting communities through advanced AI-powered verification
+              technology.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-twitter-x-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-linkedin-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary hover:text-secondary transition-colors"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#features"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#technology"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Technology</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#pricing"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Legal</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >POPI Act Compliance</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Data Processing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Cookie Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-1"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="ml-3 text-gray-400"
+                  >Ella Street, Sonneglans, Randburg, 2158</span
+                >
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="ml-3 text-gray-400">+27 11 123 4567</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="ml-3 text-gray-400">info@securescan.co.za</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-gray-800 text-center text-gray-500 text-sm"
+        >
+          <div class="flex justify-center space-x-6 mb-4">
+            <div class="flex items-center">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-visa-fill ri-lg"></i>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-mastercard-fill ri-lg"></i>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-paypal-fill ri-lg"></i>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-bank-card-fill ri-lg"></i>
+              </div>
+            </div>
+          </div>
+          <p>&copy; 2025 SecureScan AI. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script id="faqToggle">
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqToggles = document.querySelectorAll(".faq-toggle");
+        faqToggles.forEach((toggle) => {
+          toggle.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            const content = document.getElementById(targetId);
+            const icon = this.querySelector(".faq-icon");
+            if (content.classList.contains("hidden")) {
+              content.classList.remove("hidden");
+              icon.classList.remove("ri-arrow-down-s-line");
+              icon.classList.add("ri-arrow-up-s-line");
+            } else {
+              content.classList.add("hidden");
+              icon.classList.remove("ri-arrow-up-s-line");
+              icon.classList.add("ri-arrow-down-s-line");
+            }
+          });
+        });
+      });
+    </script>
+    <script id="headerScroll">
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            header.classList.add("shadow-md");
+          } else {
+            header.classList.remove("shadow-md");
+          }
+        });
+      });
+    </script>
+    <script id="chatInterface">
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatMessages = document.getElementById("chat-messages");
+        const chatInput = document.getElementById("chat-input");
+        const sendButton = document.getElementById("send-message");
+        const charCount = document.getElementById("char-count");
+        let isProcessing = false;
+        function updateCharCount() {
+          const count = chatInput.value.length;
+          charCount.textContent = count;
+          if (count > 500) {
+            charCount.classList.add("text-red-500");
+          } else {
+            charCount.classList.remove("text-red-500");
+          }
+        }
+        function addMessage(message, isUser = false) {
+          const messageDiv = document.createElement("div");
+          messageDiv.className = "flex items-start mb-4";
+          const iconDiv = document.createElement("div");
+          iconDiv.className =
+            "w-8 h-8 rounded-full flex items-center justify-center mr-3";
+          if (isUser) {
+            iconDiv.classList.add("bg-secondary/10");
+            iconDiv.innerHTML = '<i class="ri-user-line text-secondary"></i>';
+          } else {
+            iconDiv.classList.add("bg-primary/10");
+            iconDiv.innerHTML = '<i class="ri-robot-line text-primary"></i>';
+          }
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "flex-1";
+          const textP = document.createElement("p");
+          textP.className = isUser
+            ? "bg-secondary/10 rounded-lg p-3 text-gray-700"
+            : "bg-gray-100 rounded-lg p-3 text-gray-700";
+          textP.textContent = message;
+          contentDiv.appendChild(textP);
+          messageDiv.appendChild(iconDiv);
+          messageDiv.appendChild(contentDiv);
+          chatMessages.appendChild(messageDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function handleSendMessage() {
+          if (isProcessing) return;
+          const message = chatInput.value.trim();
+          if (message && message.length <= 500) {
+            isProcessing = true;
+            addMessage(message, true);
+            chatInput.value = "";
+            updateCharCount();
+            setTimeout(() => {
+              const responses = [
+                "I've analyzed your request. Let me help you with the security verification process.",
+                "Based on our security protocols, I can assist you with that verification.",
+                "I understand your concern. Let me check our security database for you.",
+                "I can help verify that information using our advanced security systems.",
+              ];
+              const randomResponse =
+                responses[Math.floor(Math.random() * responses.length)];
+              addMessage(randomResponse);
+              isProcessing = false;
+            }, 1000);
+          }
+        }
+        chatInput.addEventListener("input", updateCharCount);
+        chatInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+          }
+        });
+        sendButton.addEventListener("click", handleSendMessage);
+      });
+    </script>
+  </body>
+</html>
