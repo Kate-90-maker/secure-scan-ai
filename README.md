@@ -1,54 +1,50 @@
-# SecureScan AI 🔐
+<h1 align="center">🔐 SecureScan AI</h1>
+<p align="center">
+  AI-powered tool to verify South African credentials and reduce digital fraud
+</p>
 
-**SecureScan AI** is a futuristic AI-powered credential verification platform built to protect individuals and organizations through advanced scanning, biometric authentication, and privacy-first data handling. Designed with the South African legal framework in mind (POPI Act compliant), this is a smart solution for a safer digital world.
-
----
-
-## 💡 Key Features
-- 🧠 AI-Powered Identity Verification (coming soon)
-- 🧍‍♂️ Facial Recognition & Biometrics
-- 📢 Real-Time Alerts & Risk Feedback
-- 🛡 POPIA-Compliant Data Practices
-- 💬 AI Security Assistant (Chat UI)
-- 💸 Tiered Pricing Plans (Static Demo)
+<p align="center">
+  <img src="demo-screenshot.jpg" width="80%" alt="SecureScan AI Demo Screenshot"/>
+</p>
 
 ---
 
-## 🧰 Tech Stack
-- HTML5 + Tailwind CSS 3.4.16
-- Font: Orbitron + Pacifico
-- Icons: Remix Icons
-- Responsive + Animations (Pulse, Glow, Floating)
+## 📌 About the Project
+
+SecureScan AI is a web-based tool built to detect and reduce document fraud. By combining document scanning with AI-powered verification, it helps validate credentials like IDs, certificates, and permits — ensuring safer hiring and service practices in South Africa.
 
 ---
 
-## 📁 Folder Structure
-```
-secure-scan-ai/
-│
-├── index.html
-├── assets/
-│   ├── images/
-│   └── styles/
-└── README.md
-```
+## 🎯 Key Features
+
+- 📄 Upload & analyze scanned documents
+- 🤖 AI-powered content checking (OpenAI prompt integration)
+- 📊 Visual pass/fail results for quick validation
+- 🌐 Lightweight web front-end (in progress)
 
 ---
 
-## 🚀 Roadmap
-- [ ] Add working AI verification features using AWS Rekognition
-- [ ] Backend integration (Firebase / Supabase)
-- [ ] Deploy secure frontend
-- [ ] Add user login & dashboard
+## 🛠️ Tech Stack
+
+| Area             | Tech                             |
+|------------------|----------------------------------|
+| Backend          | Python, Flask                    |
+| AI Integration   | OpenAI API                       |
+| Front-End (WIP)  | React, TailwindCSS               |
+| Storage/Hosting  | GitHub Pages (planned), Local    |
+| Version Control  | Git + GitHub                     |
 
 ---
 
-## 👨‍💻 Creator
+## 🚀 Getting Started
 
-**Cathrine Meyers**  
-Aspiring AWS AI Engineer | Background in Sports Broadcasting | Focused on AI-driven digital safety tools  
-📍 South Africa  
-🔗 [LinkedIn](https://www.linkedin.com/in/cathrine-meyers-41483ba0) • [GitHub](https://github.com/Kate-90-maker)
+To run SecureScan AI locally:
 
----
+```bash
+git clone https://github.com/Kate-90-maker/SecureScan-AI.git
+cd SecureScan-AI
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
 
